@@ -2,7 +2,6 @@
 #include <fstream>
 #include <string>
 #include "ConstantsPlayer.h"
-#include "HelperFunctions.h"
 
 using namespace std;
 
@@ -11,22 +10,17 @@ class Player{
 public:
 	// Each player will take up 93 bytes on the ROM
 	// 69 before name, 21 for name, 3 for closing 00s
-	Player(FILE *rom, long &off);	// For new players
-	Player(FILE *rom, long off);	// For existing players
+	Player(FILE *rom, int &off);	// For new players
+	Player(FILE *rom, int off);	// For existing players
 
 	void WriteFromCSV(string vals[40]);
 
 
 private:
 	FILE *rom;
-	unsigned long playerOffset;
+	unsigned int playerOffset;
 
-	unsigned long GetOffset();
-
-	void GetValueFromRom(unsigned char &val, unsigned long valueOffset, bool output = true);
-	void GetValueFromRom(unsigned short &val, unsigned long valueOffset, bool output = true);
-	void GetValueFromRom(unsigned char arr[30], unsigned long valueOffset, bool output = true);
-
+	unsigned int GetOffset();
 
 	// Fields about player
 	unsigned char number;

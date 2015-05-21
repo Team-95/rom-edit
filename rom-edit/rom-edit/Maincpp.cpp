@@ -7,7 +7,7 @@ using namespace std;
 
 int main(){
 	FILE *file;
-	long movingEmptyOffset = EMPTY_OFFSET;
+	int movingEmptyOffset = EMPTY_OFFSET;
 
 	file = fopen("D:\\OwnCloud\\Team95\\rom-edit.md", "a+b");
 	

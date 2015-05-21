@@ -52,6 +52,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)/%(RelativeDir)/</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -77,10 +78,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ConstantsPlayer.h" />
+    <ClInclude Include="Helpers.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="HelperFunctions.h" />
+    <ClCompile Include="Helpers.cpp" />
     <ClCompile Include="Maincpp.cpp" />
     <ClCompile Include="Player.cpp" />
   </ItemGroup>
