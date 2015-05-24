@@ -10,17 +10,22 @@ class Player{
 public:
 	// Each player will take up 93 bytes on the ROM
 	// 69 before name, 21 for name, 3 for closing 00s
-	Player(FILE *rom, int &off);	// For new players
-	Player(FILE *rom, int off);	// For existing players
 
-	void WriteFromCSV(string vals[40]);
+	Player(FILE *romR, FILE* romW, int &off);	// For new players
+	Player(FILE *romR, FILE* romW, int off);	// For existing players
+	~Player();
 
+	//void SetAttribute(unsigned int attribute, unsigned char value, bool adjust = false);
+	void SetAttribute(unsigned int attribute, unsigned short value, bool adjust = false);
+	void SetAttribute(unsigned int attribute, char nam[]);
+	unsigned short GetAttribute(unsigned int attribute);
+	string GetName();
+	unsigned int GetOffset();
 
 private:
-	FILE *rom;
+	FILE *romRead;
+	FILE *romWrite;
 	unsigned int playerOffset;
-
-	unsigned int GetOffset();
 
 	// Fields about player
 	unsigned char number;
@@ -67,6 +72,7 @@ private:
 	unsigned char rDribling;
 	unsigned char rStrength;
 
-	unsigned char name[30];
+	unsigned char * name;
+	int nameSize;
 
 };
