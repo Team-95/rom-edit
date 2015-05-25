@@ -17,7 +17,7 @@ public:
 
 	//void SetAttribute(unsigned int attribute, unsigned char value, bool adjust = false);
 	void SetAttribute(unsigned int attribute, unsigned short value, bool adjust = false);
-	void SetAttribute(unsigned int attribute, char nam[]);
+	void SetName(char nam[]);
 	unsigned short GetAttribute(unsigned int attribute);
 	string GetName();
 	unsigned int GetOffset();

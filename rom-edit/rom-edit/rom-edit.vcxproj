@@ -78,13 +78,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="ConstantsPlayer.h" />
+    <ClInclude Include="ConstantsTeam.h" />
     <ClInclude Include="Helpers.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Team.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Helpers.cpp" />
     <ClCompile Include="Maincpp.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Team.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

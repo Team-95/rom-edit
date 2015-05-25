@@ -7,14 +7,51 @@ Player::Player(FILE *romR, FILE* romW, int &off){ // New Player
 	romWrite = romW;
 	off += PLAYER_SIZE;	
 
-	university = 1;
-	experience = skinColor = hair = number = position = 0;
-	height = 67;
-	weight = 80;
-	sGames = sMinutes = sMadeGoals = sAttemptedGoals = sMadeThrees = sAttemptedThrees = sMadeFreeThrows = sAttemptedFreeThrows = 0;
-	sOffRebounds = sRebounds = sAssists = sSteals = sTurnovers = sBlocks = sPoints = sFouledOut = sFouls = 0;
-	rGoals = rThrees = rFreeThrows = rDunking = rStealing = rBlocks = rOffRebounding = rDefRebounding = rPassing = 75;
-	rOffAwareness = rDefAwareness = rSpeed = rQuickness = rJumping = rDribling = rStrength = 75;
+	SetName("Brendan Murphy");
+
+	SetAttribute(PLAYER_NUMBER, 32);
+	SetAttribute(PLAYER_POSITION, 4);
+	SetAttribute(PLAYER_HEIGHT, 90);
+	SetAttribute(PLAYER_WEIGHT, 150);
+	SetAttribute(PLAYER_EXP, 10);
+	SetAttribute(PLAYER_UNIVERSITY, 2);
+	SetAttribute(PLAYER_SKINCOLOR, 3);
+	SetAttribute(PLAYER_HAIR, 0x24);
+
+	SetAttribute(PLAYER_S_GAMES, 0);
+	SetAttribute(PLAYER_S_MINUTES, 0);
+	SetAttribute(PLAYER_S_MADEGOALS, 0);
+	SetAttribute(PLAYER_S_ATTEMPTEDGOALS, 0);
+	SetAttribute(PLAYER_S_MADETHREES, 0);
+	SetAttribute(PLAYER_S_ATTEMPTEDTHREES, 0);
+	SetAttribute(PLAYER_S_MADEFREETHROWS, 0);
+	SetAttribute(PLAYER_S_ATTEMPTEDFREETHROWS, 0);
+	SetAttribute(PLAYER_S_OFFREBOUNDS, 0);
+	SetAttribute(PLAYER_S_REBOUNDS, 0);
+	SetAttribute(PLAYER_S_ASSISTS, 0);
+	SetAttribute(PLAYER_S_STEALS, 0);
+	SetAttribute(PLAYER_S_TURNOVERS, 0);
+	SetAttribute(PLAYER_S_BLOCKS, 0);
+	SetAttribute(PLAYER_S_POINTS, 0);
+	SetAttribute(PLAYER_S_FOULEDOUT, 0);
+	SetAttribute(PLAYER_S_FOULS, 0);
+
+	SetAttribute(PLAYER_R_GOALS, 75);
+	SetAttribute(PLAYER_R_THREES, 75);
+	SetAttribute(PLAYER_R_FREETHROW, 75);
+	SetAttribute(PLAYER_R_DUNKING, 75);
+	SetAttribute(PLAYER_R_STEALING, 75);
+	SetAttribute(PLAYER_R_BLOCKS, 75);
+	SetAttribute(PLAYER_R_OFFREBOUNDING, 75);
+	SetAttribute(PLAYER_R_DEFREBOUNDING, 75);
+	SetAttribute(PLAYER_R_PASSING, 75);
+	SetAttribute(PLAYER_R_OFFAWARENESS, 75);
+	SetAttribute(PLAYER_R_DEFAWARENESS, 75);
+	SetAttribute(PLAYER_R_SPEED, 75);
+	SetAttribute(PLAYER_R_QUICKNESS, 75);
+	SetAttribute(PLAYER_R_JUMPING, 75);
+	SetAttribute(PLAYER_R_DRIBLING, 75);
+	SetAttribute(PLAYER_R_STRENGTH, 75);
 }
 
 Player::Player(FILE *romR, FILE* romW, int off){
@@ -244,7 +281,7 @@ void Player::SetAttribute(unsigned int attribute, unsigned short value, bool adj
 		delete temp;
 	}
 }
-void Player::SetAttribute(unsigned int attribute, char nam[]){
+void Player::SetName(char nam[]){
 
 	// Set name to all zeros
 	for (int i = 0; i < 30; i++)
@@ -290,7 +327,7 @@ void Player::SetAttribute(unsigned int attribute, char nam[]){
 		name[i] = firstName[i - k];
 	}
 
-	WriteRom(romWrite, playerOffset + attribute, name, nameSize);
+	WriteRom(romWrite, playerOffset + PLAYER_NAME, name, nameSize);
 }
 
 unsigned short Player::GetAttribute(unsigned int attribute){
@@ -379,13 +416,6 @@ unsigned short Player::GetAttribute(unsigned int attribute){
 		return 0;
 }
 string Player::GetName(){
-	char reName[30];
-	int middlePos = 0;
-	
-	for (int i = 0; i < 30; i++){
-
-	}
-
 	string returnVal((char*)name);
 	return returnVal;
 }

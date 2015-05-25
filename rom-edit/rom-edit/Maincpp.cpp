@@ -27,17 +27,8 @@ int main(){
 	romRead = fopen("D:\\OwnCloud\\Team95\\rom-edit.md", "rb");
 
 	Player player1(romRead, romWrite, 0x00042410);
-	player1.SetAttribute(PLAYER_NAME, "Brendan Murphy");
+	player1.SetName("Brendan Murphy");
 	cout << player1.GetName() << endl;
-	/*player1.SetAttribute(PLAYER_NUMBER, 32);
-	player1.SetAttribute(PLAYER_POSITION, 4);
-	player1.SetAttribute(PLAYER_HEIGHT, 90);
-	player1.SetAttribute(PLAYER_WEIGHT, 150);
-	player1.SetAttribute(PLAYER_EXP, 10);
-	player1.SetAttribute(PLAYER_UNIVERSITY, 2);
-	player1.SetAttribute(PLAYER_SKINCOLOR, 3);
-	player1.SetAttribute(PLAYER_HAIR, 0x24);
-	player1.SetAttribute(PLAYER_S_GAMES, 0x1111);*/
 	
 	fclose(romRead);
 	fclose(romWrite);
