@@ -1,6 +1,10 @@
 #include "Player.h"
 #include "Helpers.h"
 
+Player::Player(){
+	name = NULL;
+}
+
 Player::Player(FILE *romR, FILE* romW, int &off){ // New Player
 	playerOffset = off;
 	romRead = romR;
@@ -54,8 +58,8 @@ Player::Player(FILE *romR, FILE* romW, int &off){ // New Player
 	SetAttribute(PLAYER_R_STRENGTH, 75);
 }
 
-Player::Player(FILE *romR, FILE* romW, int off){
-
+Player::Player(FILE *romR, FILE* romW, int off)
+{
 	playerOffset = off;
 	romRead = romR;
 	romWrite = romW;
@@ -67,18 +71,23 @@ Player::Player(FILE *romR, FILE* romW, int off){
 	int zeroCount = 0;
 	int ch;
 
-	do{
+	do
+	{
 		nameSize++;
 		ch = fgetc(romRead);
 		if (ch == 0)
+		{
 			zeroCount++;
-	} while (zeroCount < 2);
+		}
+	} 
+	while (zeroCount < 2);
 	nameSize--;
 
 	// Set name to what is on the ROM
 	name = ReadRom(romRead, playerOffset + PLAYER_NAME, nameSize);
 	// Set values after name to 0
-	for (int i = nameSize; i < 30; i++){
+	for (int i = nameSize; i < 30; i++)
+	{
 		name[i] = 0;
 	}
 
@@ -132,8 +141,10 @@ Player::Player(FILE *romR, FILE* romW, int off){
 	
 }
 
-Player::~Player(){
-	delete name;
+Player::~Player()
+{
+	if (name)
+		delete name;
 }
 
 unsigned int Player::GetOffset(){ return playerOffset; }
@@ -221,7 +232,8 @@ void Player::SetAttribute(unsigned int attribute, unsigned short value, bool adj
 		}
 		WriteRom(romWrite, playerOffset + attribute, &charVal);
 	}
-	else if (attribute > 0x7 && attribute < 0x2A){ // Multi byte values
+	else if (attribute > 0x7 && attribute < 0x2A)
+	{ // Multi byte values
 		switch (attribute){
 		case PLAYER_S_GAMES:
 			sGames = value;			
@@ -281,8 +293,8 @@ void Player::SetAttribute(unsigned int attribute, unsigned short value, bool adj
 		delete temp;
 	}
 }
-void Player::SetName(char nam[]){
-
+void Player::SetName(char nam[])
+{
 	// Set name to all zeros
 	for (int i = 0; i < 30; i++)
 		name[i] = 0;
@@ -415,7 +427,8 @@ unsigned short Player::GetAttribute(unsigned int attribute){
 	}
 		return 0;
 }
-string Player::GetName(){
+string Player::GetName()
+{
 	string returnVal((char*)name);
 	return returnVal;
 }

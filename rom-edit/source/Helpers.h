@@ -16,8 +16,13 @@ unsigned char BytesToChar(unsigned char* arr);
 // Converts byte array to short
 unsigned short BytesToShort(unsigned char* arr);
 
+// Converts byte array to int
+unsigned int BytesToInt(unsigned char* arr);
+
 // Converts short to byte array
 unsigned char* ShortToBytes(unsigned short val);
 
-// Copies source rom to a new rom that can be read and written to
+// Converts short to byte array
+unsigned char* IntToBytes(unsigned int val);
+
 void CopyFile(FILE* source, FILE* dest);

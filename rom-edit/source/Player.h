@@ -1,3 +1,6 @@
+#ifndef PLAYER_H
+#define PLAYER_H
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -10,7 +13,7 @@ class Player{
 public:
 	// Each player will take up 93 bytes on the ROM
 	// 69 before name, 21 for name, 3 for closing 00s
-
+	Player();
 	Player(FILE *romR, FILE* romW, int &off);	// For new players
 	Player(FILE *romR, FILE* romW, int off);	// For existing players
 	~Player();
@@ -76,3 +79,5 @@ private:
 	int nameSize;
 
 };
+
+#endif
