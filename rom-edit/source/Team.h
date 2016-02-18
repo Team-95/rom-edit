@@ -11,7 +11,7 @@ public:
 	// For existing teams
 	Team(FILE* romR, FILE* romW, unsigned int teamAddress, unsigned int menuAddress);
 	// For new team in ROM
-	Team(FILE* romR, FILE* romW, unsigned int &teamAddress, unsigned int menuAddress);
+	//Team(FILE* romR, FILE* romW, unsigned int &teamAddress, unsigned int menuAddress);
 
 	unsigned int GetMenuAddress();
 	unsigned int GetTeamAddress();

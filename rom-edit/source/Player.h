@@ -8,19 +8,20 @@
 
 using namespace std;
 
-class Player{
+class Player
+{
 
 public:
 	// Each player will take up 93 bytes on the ROM
 	// 69 before name, 21 for name, 3 for closing 00s
 	Player();
-	Player(FILE *romR, FILE* romW, int &off);	// For new players
-	Player(FILE *romR, FILE* romW, int off);	// For existing players
+	Player(FILE *romR, FILE* romW, unsigned int &off, bool byRef);	// For new players
+	Player(FILE *romR, FILE* romW, unsigned int off);	// For existing players
 	~Player();
 
 	//void SetAttribute(unsigned int attribute, unsigned char value, bool adjust = false);
 	void SetAttribute(unsigned int attribute, unsigned short value, bool adjust = false);
-	void SetName(char nam[]);
+	void SetName(const char nam[]);
 	unsigned short GetAttribute(unsigned int attribute);
 	string GetName();
 	unsigned int GetOffset();

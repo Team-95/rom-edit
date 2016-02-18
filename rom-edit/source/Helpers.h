@@ -26,3 +26,9 @@ unsigned char* ShortToBytes(unsigned short val);
 unsigned char* IntToBytes(unsigned int val);
 
 void CopyFile(FILE* source, FILE* dest);
+
+unsigned char StringToChar(string s);
+
+unsigned short StringToShort(string s);
+
+void TeamOffsetsFromAbbreviation(string cellVal, unsigned int &teamOffset, unsigned int &menuOffset);

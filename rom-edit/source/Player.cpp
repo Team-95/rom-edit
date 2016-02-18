@@ -5,11 +5,14 @@ Player::Player(){
 	name = NULL;
 }
 
-Player::Player(FILE *romR, FILE* romW, int &off){ // New Player
+Player::Player(FILE *romR, FILE* romW, unsigned int &off, bool byRef){ // New Player
 	playerOffset = off;
 	romRead = romR;
 	romWrite = romW;
 	off += PLAYER_SIZE;	
+
+	nameSize = 24;
+	name = new unsigned char[24];
 
 	SetName("Brendan Murphy");
 
@@ -58,7 +61,7 @@ Player::Player(FILE *romR, FILE* romW, int &off){ // New Player
 	SetAttribute(PLAYER_R_STRENGTH, 75);
 }
 
-Player::Player(FILE *romR, FILE* romW, int off)
+Player::Player(FILE *romR, FILE* romW, unsigned int off)
 {
 	playerOffset = off;
 	romRead = romR;
@@ -137,8 +140,6 @@ Player::Player(FILE *romR, FILE* romW, int off)
 	rJumping = BytesToChar(ReadRom(romRead, playerOffset + PLAYER_R_JUMPING));
 	rDribling = BytesToChar(ReadRom(romRead, playerOffset + PLAYER_R_DRIBLING));
 	rStrength = BytesToChar(ReadRom(romRead, playerOffset + PLAYER_R_STRENGTH));
-	
-	
 }
 
 Player::~Player()
@@ -149,7 +150,8 @@ Player::~Player()
 
 unsigned int Player::GetOffset(){ return playerOffset; }
 
-void Player::SetAttribute(unsigned int attribute, unsigned short value, bool adjust){
+void Player::SetAttribute(unsigned int attribute, unsigned short value, bool adjust)
+{
 	unsigned char * temp;
 	unsigned char charVal = value;
 
@@ -293,7 +295,7 @@ void Player::SetAttribute(unsigned int attribute, unsigned short value, bool adj
 		delete temp;
 	}
 }
-void Player::SetName(char nam[])
+void Player::SetName(const char nam[])
 {
 	// Set name to all zeros
 	for (int i = 0; i < 30; i++)
@@ -315,34 +317,44 @@ void Player::SetName(char nam[])
 	}
 	i++;
 	int k = i;
-	for (i; i < nameSize; i++){
+	for (i; i < nameSize; i++)
+	{
 		if (nam[i] == ' ')
+		{
 			break;
+		}
 		lastName[i-k] = nam[i];
 	}
 
 	i = 0;
 	k = 0;
 
-	for (;; i++){
+	for (;; i++)
+	{
 		if (lastName[i] == '\0')
+		{
 			break;
+		}
 		name[i] = lastName[i];
 	}
 
 	name[i] = 0;
 	i++;
 	k = i;
-	for (;;i++){
+	for (;;i++)
+	{
 		if (firstName[i - k] == '\0')
+		{
 			break;
+		}
 		name[i] = firstName[i - k];
 	}
 
 	WriteRom(romWrite, playerOffset + PLAYER_NAME, name, nameSize);
 }
 
-unsigned short Player::GetAttribute(unsigned int attribute){
+unsigned short Player::GetAttribute(unsigned int attribute)
+{
 		switch (attribute){
 		case PLAYER_NUMBER:
 			return number;

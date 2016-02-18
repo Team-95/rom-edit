@@ -20,7 +20,7 @@ Team::Team(FILE* romR, FILE* romW, unsigned int teamAddress, unsigned int menuAd
 	tsColor3 = BytesToChar(ReadRom(romRead, tOffset + TEAM_TS_COLOR3));
 }
 
-Team::Team(FILE* romR, FILE* romW, unsigned int &teamAddress, unsigned int menuAddress){}
+//Team::Team(FILE* romR, FILE* romW, unsigned int &teamAddress, unsigned int menuAddress){}
 
 unsigned int Team::GetMenuAddress(){ return mOffset; }
 unsigned int Team::GetTeamAddress(){ return tOffset; }
@@ -74,6 +74,7 @@ void Team::SetAttribute(unsigned int attribute, unsigned char value)
 void Team::SetPlayer(int index, Player * player)
 {
 	players[index] = player;
+	WriteRom(romWrite, tOffset + (4 * index), IntToBytes(player->GetOffset()), 4);
 }
 
 Player* Team::GetPlayer(int index)
