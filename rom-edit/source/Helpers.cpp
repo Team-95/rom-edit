@@ -161,8 +161,8 @@ void TeamOffsetsFromAbbreviation(string cellVal, unsigned int &teamOffset, unsig
 	}
 	else if (cellVal == "MEM")
 	{
-		teamOffset = T_STARSEAST;
-		menuOffset = M_STARSEAST;
+		teamOffset = T_STARSWEST;
+		menuOffset = M_STARSWEST;
 	}
 	else if (cellVal == "MIA")
 	{
@@ -181,8 +181,8 @@ void TeamOffsetsFromAbbreviation(string cellVal, unsigned int &teamOffset, unsig
 	}
 	else if (cellVal == "NOP")
 	{
-		teamOffset = T_STARSEAST;
-		menuOffset = M_STARSEAST;
+		//teamOffset = T_STARSEAST;
+		//menuOffset = M_STARSEAST;
 	}
 	else if (cellVal == "NYK")
 	{
@@ -226,8 +226,8 @@ void TeamOffsetsFromAbbreviation(string cellVal, unsigned int &teamOffset, unsig
 	}
 	else if (cellVal == "TOR")
 	{
-		//teamOffset = T_TORONTO;
-		//menuOffset = M_TORONTO;
+		teamOffset = T_STARSEAST;
+		menuOffset = M_STARSEAST;
 	}
 	else if (cellVal == "UTA")
 	{

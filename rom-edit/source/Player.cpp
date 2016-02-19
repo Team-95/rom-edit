@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "Helpers.h"
+#include <cstring>
 
 Player::Player(){
 	name = NULL;
@@ -166,12 +167,12 @@ void Player::SetAttribute(unsigned int attribute, unsigned short value, bool adj
 			break;
 		case PLAYER_HEIGHT:
 			if (adjust)
-				charVal -= 5;
+				charVal += 5;
 			height = charVal;
 			break;
 		case PLAYER_WEIGHT:
 			if (adjust)
-				weight -= 100;
+				charVal -= 100;
 			weight = charVal;
 			break;
 		case PLAYER_EXP:
@@ -209,6 +210,7 @@ void Player::SetAttribute(unsigned int attribute, unsigned short value, bool adj
 			break;
 		case PLAYER_R_DEFREBOUNDING:
 			rDefRebounding = charVal;
+			charVal += rOffRebounding;
 			break;
 		case PLAYER_R_PASSING:
 			rPassing = charVal;
@@ -310,14 +312,17 @@ void Player::SetName(const char nam[])
 	}
 
 	int i = 0;
-	for (; i < nameSize / 2; i++){
+	for (; i < 30; i++){
 		if (nam[i] == ' ')
+		{
 			break;
+		}
 		firstName[i] = nam[i];
 	}
+
 	i++;
 	int k = i;
-	for (i; i < nameSize; i++)
+	for (; i - k < nameSize - 2; i++)
 	{
 		if (nam[i] == ' ')
 		{
@@ -337,17 +342,25 @@ void Player::SetName(const char nam[])
 		}
 		name[i] = lastName[i];
 	}
-
 	name[i] = 0;
 	i++;
-	k = i;
-	for (;;i++)
+
+	if (strlen(lastName) + strlen(firstName) > nameSize - 1)
 	{
-		if (firstName[i - k] == '\0')
+		name[i] = firstName[0];
+		name[i + 1] = '.';
+	}
+	else
+	{
+		k = i;
+		for (;; i++)
 		{
-			break;
+			if (firstName[i - k] == '\0')
+			{
+				break;
+			}
+			name[i] = firstName[i - k];
 		}
-		name[i] = firstName[i - k];
 	}
 
 	WriteRom(romWrite, playerOffset + PLAYER_NAME, name, nameSize);

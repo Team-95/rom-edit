@@ -74,7 +74,7 @@ void Team::SetAttribute(unsigned int attribute, unsigned char value)
 void Team::SetPlayer(int index, Player * player)
 {
 	players[index] = player;
-	WriteRom(romWrite, tOffset + (4 * index), IntToBytes(player->GetOffset()), 4);
+	//WriteRom(romWrite, tOffset + (4 * index), IntToBytes(player->GetOffset()), 4);
 }
 
 Player* Team::GetPlayer(int index)
