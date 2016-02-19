@@ -32,7 +32,7 @@ int main()
 
 	romRead = fopen("D:\\OwnCloud\\Team95\\rom-edit.md", "rb");
 
-	ifstream playerSheet("D:\\Owncloud\\Team95\\stats\\testCopy.csv");
+	ifstream playerStats("D:\\Projects\\2014-15 Player and Team Stats\\2014-15.csv");
 	string line;
 
 	string curTeamAb = "";
@@ -40,7 +40,7 @@ int main()
 	int playerIndex = 0;
 	unsigned int emptyOffset = EMPTY_OFFSET;
 
-	while (getline(playerSheet, line))
+	while (getline(playerStats, line))
 	{
 		stringstream lineStream(line);
 		string cell;
@@ -51,7 +51,6 @@ int main()
 		{
 			curTeamAb = cell;
 
-			// Create a new team
 			unsigned int tOff;
 			unsigned int mOff;
 
@@ -79,7 +78,7 @@ int main()
 				case 1:
 					curPlayer->SetName(cell.c_str());
 					break;
-				case 2: // working
+				case 2: 
 					unsigned char val;
 					if (cell == "C") { val = 0; }
 					else if (cell == "PF") { val = 1; }
@@ -93,7 +92,7 @@ int main()
 					curPlayer->SetAttribute(PLAYER_NUMBER, StringToChar(cell)); 
 					break;
 				case 4:
-					curPlayer->SetAttribute(PLAYER_HEIGHT, StringToChar(cell), true);
+					curPlayer->SetAttribute(PLAYER_HEIGHT, StringToChar(cell));
 					break;
 				case 5:
 					curPlayer->SetAttribute(PLAYER_WEIGHT, StringToChar(cell), true);
@@ -108,46 +107,46 @@ int main()
 					curPlayer->SetAttribute(PLAYER_S_MINUTES, StringToShort(cell)); 
 					break;
 				case 9:
-					curPlayer->SetAttribute(PLAYER_S_POINTS, StringToShort(cell));
-					break;
-				case 10:
 					curPlayer->SetAttribute(PLAYER_S_MADEGOALS, StringToShort(cell));
 					break;
-				case 11:
+				case 10:
 					curPlayer->SetAttribute(PLAYER_S_ATTEMPTEDGOALS, StringToShort(cell));
 					break;
-				case 12:
+				case 11:
 					curPlayer->SetAttribute(PLAYER_S_MADETHREES, StringToShort(cell));
 					break;
-				case 13:
+				case 12:
 					curPlayer->SetAttribute(PLAYER_S_ATTEMPTEDTHREES, StringToShort(cell));
 					break;
-				case 14:
+				case 13:
 					curPlayer->SetAttribute(PLAYER_S_MADEFREETHROWS, StringToShort(cell));
 					break;
-				case 15:
+				case 14:
 					curPlayer->SetAttribute(PLAYER_S_ATTEMPTEDFREETHROWS, StringToShort(cell));
 					break;
-				case 16:
+				case 15:
 					curPlayer->SetAttribute(PLAYER_S_OFFREBOUNDS, StringToShort(cell));
 					break;
-				case 17:
+				case 16:
 					curPlayer->SetAttribute(PLAYER_S_REBOUNDS, StringToShort(cell));
 					break;
-				case 18:
+				case 17:
 					curPlayer->SetAttribute(PLAYER_S_ASSISTS, StringToShort(cell));
 					break;
-				case 19:
+				case 18:
 					curPlayer->SetAttribute(PLAYER_S_STEALS, StringToShort(cell));
+					break;
+				case 19:
+					curPlayer->SetAttribute(PLAYER_S_BLOCKS, StringToShort(cell));
 					break;
 				case 20:
 					curPlayer->SetAttribute(PLAYER_S_TURNOVERS, StringToShort(cell));
 					break;
 				case 21:
-					curPlayer->SetAttribute(PLAYER_S_BLOCKS, StringToShort(cell));
+					curPlayer->SetAttribute(PLAYER_S_FOULS, StringToShort(cell));
 					break;
 				case 22:
-					curPlayer->SetAttribute(PLAYER_S_FOULS, StringToShort(cell));
+					curPlayer->SetAttribute(PLAYER_S_POINTS, StringToShort(cell));
 					break;
 				case 23:
 					curPlayer->SetAttribute(PLAYER_R_GOALS, StringToChar(cell));
@@ -197,6 +196,10 @@ int main()
 				case 38:
 					curPlayer->SetAttribute(PLAYER_R_STRENGTH, StringToChar(cell));
 					break;
+				case 39:
+					curPlayer->SetAttribute(PLAYER_HAIR, StringHexToChar(cell));
+				case 40:
+					curPlayer->SetAttribute(PLAYER_SKINCOLOR, StringHexToChar(cell));
 				default:
 					break;
 				}
@@ -210,5 +213,5 @@ int main()
 
 	fclose(romRead);
 	fclose(romWrite);
-	playerSheet.close();
+	playerStats.close();
 }

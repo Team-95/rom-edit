@@ -32,3 +32,5 @@ unsigned char StringToChar(string s);
 unsigned short StringToShort(string s);
 
 void TeamOffsetsFromAbbreviation(string cellVal, unsigned int &teamOffset, unsigned int &menuOffset);
+
+unsigned char StringHexToChar(string s);

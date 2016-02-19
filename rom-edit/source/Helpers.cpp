@@ -240,3 +240,39 @@ void TeamOffsetsFromAbbreviation(string cellVal, unsigned int &teamOffset, unsig
 		menuOffset = M_WASHINGTON;
 	}
 }
+
+unsigned char StringHexToChar(string s)
+{
+	unsigned char retVal = 0;
+
+	if (s.length() == 2)
+	{
+		if (s[0] == '1')
+		{
+			retVal += 0x10;
+		}
+		else if (s[0] == '2')
+		{
+			retVal += 0x20;
+		}
+
+		if (s[1] >= '0' && s[1] <= '9')
+		{
+			retVal += s[1] - '0';
+		}
+		else if (s[1] >= 'A' && s[1] <= 'F')
+		{
+			retVal += s[1] - 'A' + 10;
+		}
+		else if (s[1] >= 'a' && s[1] <= 'f')
+		{
+			retVal += s[1] - 'f' + 10;
+		}
+	}
+	else
+	{
+		retVal += s[0] - '0';
+	}
+
+	return retVal;
+}

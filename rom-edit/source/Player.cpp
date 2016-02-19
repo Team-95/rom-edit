@@ -210,7 +210,6 @@ void Player::SetAttribute(unsigned int attribute, unsigned short value, bool adj
 			break;
 		case PLAYER_R_DEFREBOUNDING:
 			rDefRebounding = charVal;
-			charVal += rOffRebounding;
 			break;
 		case PLAYER_R_PASSING:
 			rPassing = charVal;
@@ -267,6 +266,7 @@ void Player::SetAttribute(unsigned int attribute, unsigned short value, bool adj
 			sOffRebounds = value;
 			break;
 		case PLAYER_S_REBOUNDS:
+			value += sOffRebounds;
 			sRebounds = value;
 			break;
 		case PLAYER_S_ASSISTS:
