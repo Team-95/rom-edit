@@ -301,18 +301,22 @@ void Player::SetName(const char nam[])
 {
 	// Set name to all zeros
 	for (int i = 0; i < 30; i++)
+	{
 		name[i] = 0;
+	}
 
 	char firstName[30];
 	char lastName[30];
 
-	for (int j = 0; j < 30; j++){
+	for (int j = 0; j < 30; j++)
+	{
 		firstName[j] = '\0';
 		lastName[j] = '\0';
 	}
 
 	int i = 0;
-	for (; i < 30; i++){
+	for (; i < 30; i++)
+	{
 		if (nam[i] == ' ')
 		{
 			break;

@@ -33,6 +33,7 @@ int main()
 	romRead = fopen("D:\\OwnCloud\\Team95\\rom-edit.md", "rb");
 
 	ifstream playerStats("D:\\Projects\\2014-15 Player and Team Stats\\2014-15.csv");
+	ifstream teamStats("D:\\Projects\\2014-15 Player and Team Stats\\TeamStats.csv");
 	string line;
 
 	string curTeamAb = "";
@@ -57,13 +58,66 @@ int main()
 			TeamOffsetsFromAbbreviation(cell, tOff, mOff);
 
 			curTeam = new Team(romRead, romWrite, tOff, mOff);
+			
+			string teamLine;
+			while (getline(teamStats, teamLine))
+			{
+				stringstream teamLineStream(teamLine);
+				string teamCell;
+				getline(teamLineStream, teamCell, ',');
+
+				if (teamCell == curTeamAb)
+				{
+					int cellNumber = 0;
+					while (getline(teamLineStream, teamCell, ','))
+					{
+						unsigned char value = StringToChar(teamCell);
+						
+						// For God knows what reason, these teams cannot have values above 27
+						if (curTeamAb == "CHO" && value > 27)
+						{
+							value = 27;
+						}
+						else if (curTeamAb == "NYK" && value > 27)
+						{
+							value = 27;
+						}
+						else if (curTeamAb == "PHI"  && value > 27)
+						{
+							value = 27;
+						}
+
+						switch (cellNumber)
+						{
+						case 0:
+							curTeam->SetAttribute(TEAM_OVERALL, value);
+							break;
+						case 2:
+							curTeam->SetAttribute(TEAM_SCORING, value);
+							break;
+						case 3:
+							curTeam->SetAttribute(TEAM_DEFENSE, value);
+							break;
+						case 4:
+							curTeam->SetAttribute(TEAM_REBOUNDS, value);
+							break;
+						case 5:
+							curTeam->SetAttribute(TEAM_BALLCONTROL, value);
+							break;
+						}
+						cellNumber++;
+					}
+
+					teamStats.seekg(0, ios::beg);
+					break;
+				}
+			}
+
 			playerIndex = 0;
 		}
 
 		if (playerIndex < 12)
 		{
-			//curTeam->SetPlayer(playerIndex, new Player(romRead, romWrite, emptyOffset, true));
-
 			unsigned int playerOffset;
 			unsigned char *bytes = ReadRom(romRead, curTeam->GetTeamAddress() + (4 * playerIndex), 4);
 			playerOffset = BytesToInt(bytes);

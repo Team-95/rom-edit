@@ -19,7 +19,6 @@ public:
 	Player(FILE *romR, FILE* romW, unsigned int off);	// For existing players
 	~Player();
 
-	//void SetAttribute(unsigned int attribute, unsigned char value, bool adjust = false);
 	void SetAttribute(unsigned int attribute, unsigned short value, bool adjust = false);
 	void SetName(const char nam[]);
 	unsigned short GetAttribute(unsigned int attribute);

@@ -53,20 +53,28 @@ void Team::SetAttribute(unsigned int attribute, unsigned char value)
 	switch (attribute){
 	case TEAM_SCORING:
 		scoring = value;
+		break;
 	case TEAM_REBOUNDS:
 		rebounds = value;
+		break;
 	case TEAM_BALLCONTROL:
 		ballControl = value;
+		break;
 	case TEAM_DEFENSE:
 		defense = value;
+		break;
 	case TEAM_OVERALL:
 		overall = value;
+		break;
 	case TEAM_TS_COLOR1:
 		tsColor1 = value;
+		break;
 	case TEAM_TS_COLOR2:
 		tsColor2 = value;
+		break;
 	case TEAM_TS_COLOR3:
 		tsColor3 = value;
+		break;
 	}
 	WriteRom(romWrite, tOffset + attribute, &value);
 }
