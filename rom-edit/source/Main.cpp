@@ -18,7 +18,7 @@ int main()
 	int movingEmptyOffset = EMPTY_OFFSET;
 	Team teams[27];
 
-	tempRead = fopen("D:\\OwnCloud\\Team95\\test.md", "rb");
+	tempRead = fopen("D:\\OwnCloud\\Team95\\NBA Live 95 (USA, Europe).md", "rb");
 	romWrite = fopen("D:\\OwnCloud\\Team95\\rom-edit.md", "wb");
 
 	if (!tempRead || !romWrite)
@@ -269,6 +269,22 @@ int main()
 
 		playerIndex++;
 	}
+
+	// Disable checksum
+	unsigned char checksumOverride[4];
+	checksumOverride[0] = 0x71;
+	checksumOverride[1] = 0x4E;
+	checksumOverride[2] = 0x71;
+	checksumOverride[3] = 0x4E;
+	WriteRom(romWrite, 0x00000691, checksumOverride, 4);
+
+	//Remove Jerseys
+	unsigned char jerseyOverride[4];
+	jerseyOverride[0] = 0x42;
+	jerseyOverride[1] = 0x40;
+	jerseyOverride[2] = 0x4E;
+	jerseyOverride[3] = 0x71;
+	WriteRom(romWrite, 0x00008E4C, jerseyOverride, 4);
 
 	fclose(romRead);
 	fclose(romWrite);
