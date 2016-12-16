@@ -48,6 +48,11 @@ int main()
 
 		getline(lineStream, cell, ',');
 
+		if (cell == "Tm") 
+		{
+			continue;
+		}
+
 		if (cell != curTeamAb && cell != "NOP")
 		{
 			curTeamAb = cell;
@@ -62,6 +67,8 @@ int main()
 			string teamLine;
 			while (getline(teamStats, teamLine))
 			{
+				playerIndex = 0;
+
 				stringstream teamLineStream(teamLine);
 				string teamCell;
 				getline(teamLineStream, teamCell, ',');
@@ -112,8 +119,6 @@ int main()
 					break;
 				}
 			}
-
-			playerIndex = 0;
 		}
 
 		if (playerIndex < 12)
@@ -151,108 +156,108 @@ int main()
 				case 5:
 					curPlayer->SetAttribute(PLAYER_WEIGHT, StringToChar(cell), true);
 					break;
-				case 6:// College, need a helper function
-					   //curPlayer->SetAttribute(PLAYER_NUMBER, StringToChar(cell));
-					break;
-				case 7:
+				//case 6:// College, need a helper function
+				//	   //curPlayer->SetAttribute(PLAYER_NUMBER, StringToChar(cell));
+				//	break;
+				case 9:
 					curPlayer->SetAttribute(PLAYER_S_GAMES, StringToShort(cell));
 					break;
-				case 8:
+				case 11:
 					curPlayer->SetAttribute(PLAYER_S_MINUTES, StringToShort(cell)); 
 					break;
-				case 9:
+				case 12:
 					curPlayer->SetAttribute(PLAYER_S_MADEGOALS, StringToShort(cell));
 					break;
-				case 10:
+				case 13:
 					curPlayer->SetAttribute(PLAYER_S_ATTEMPTEDGOALS, StringToShort(cell));
 					break;
-				case 11:
+				case 15:
 					curPlayer->SetAttribute(PLAYER_S_MADETHREES, StringToShort(cell));
 					break;
-				case 12:
+				case 16:
 					curPlayer->SetAttribute(PLAYER_S_ATTEMPTEDTHREES, StringToShort(cell));
 					break;
-				case 13:
+				case 22:
 					curPlayer->SetAttribute(PLAYER_S_MADEFREETHROWS, StringToShort(cell));
 					break;
-				case 14:
+				case 23:
 					curPlayer->SetAttribute(PLAYER_S_ATTEMPTEDFREETHROWS, StringToShort(cell));
 					break;
-				case 15:
+				case 25:
 					curPlayer->SetAttribute(PLAYER_S_OFFREBOUNDS, StringToShort(cell));
 					break;
-				case 16:
+				case 27:
 					curPlayer->SetAttribute(PLAYER_S_REBOUNDS, StringToShort(cell));
 					break;
-				case 17:
+				case 28:
 					curPlayer->SetAttribute(PLAYER_S_ASSISTS, StringToShort(cell));
 					break;
-				case 18:
+				case 29:
 					curPlayer->SetAttribute(PLAYER_S_STEALS, StringToShort(cell));
 					break;
-				case 19:
+				case 30:
 					curPlayer->SetAttribute(PLAYER_S_BLOCKS, StringToShort(cell));
 					break;
-				case 20:
+				case 31:
 					curPlayer->SetAttribute(PLAYER_S_TURNOVERS, StringToShort(cell));
 					break;
-				case 21:
+				case 32:
 					curPlayer->SetAttribute(PLAYER_S_FOULS, StringToShort(cell));
 					break;
-				case 22:
+				case 33:
 					curPlayer->SetAttribute(PLAYER_S_POINTS, StringToShort(cell));
 					break;
-				case 23:
+				case 36:
 					curPlayer->SetAttribute(PLAYER_R_GOALS, StringToChar(cell));
 					break;
-				case 24:
+				case 37:
 					curPlayer->SetAttribute(PLAYER_R_THREES, StringToChar(cell));
 					break;
-				case 25:
+				case 38:
 					curPlayer->SetAttribute(PLAYER_R_FREETHROW, StringToChar(cell));
 					break;
-				case 26:
+				case 39:
 					curPlayer->SetAttribute(PLAYER_R_DUNKING, StringToChar(cell));
 					break;
-				case 27:
+				case 40:
 					curPlayer->SetAttribute(PLAYER_R_STEALING, StringToChar(cell));
 					break;
-				case 28:
+				case 41:
 					curPlayer->SetAttribute(PLAYER_R_BLOCKS, StringToChar(cell));
 					break;
-				case 29:
+				case 42:
 					curPlayer->SetAttribute(PLAYER_R_OFFREBOUNDING, StringToChar(cell));
 					break;
-				case 30:
+				case 43:
 					curPlayer->SetAttribute(PLAYER_R_DEFREBOUNDING, StringToChar(cell));
 					break;
-				case 31:
+				case 44:
 					curPlayer->SetAttribute(PLAYER_R_PASSING, StringToChar(cell));
 					break;
-				case 32:
+				case 45:
 					curPlayer->SetAttribute(PLAYER_R_OFFAWARENESS, StringToChar(cell));
 					break;
-				case 33:
+				case 46:
 					curPlayer->SetAttribute(PLAYER_R_DEFAWARENESS, StringToChar(cell));
 					break;
-				case 34:
+				case 47:
 					curPlayer->SetAttribute(PLAYER_R_SPEED, StringToChar(cell));
 					break;
-				case 35:
+				case 48:
 					curPlayer->SetAttribute(PLAYER_R_QUICKNESS, StringToChar(cell));
 					break;
-				case 36:
+				case 49:
 					curPlayer->SetAttribute(PLAYER_R_JUMPING, StringToChar(cell));
 					break;
-				case 37:
+				case 50:
 					curPlayer->SetAttribute(PLAYER_R_DRIBLING, StringToChar(cell));
 					break;
-				case 38:
+				case 51:
 					curPlayer->SetAttribute(PLAYER_R_STRENGTH, StringToChar(cell));
 					break;
-				case 39:
+				case 52:
 					curPlayer->SetAttribute(PLAYER_HAIR, StringHexToChar(cell));
-				case 40:
+				case 53:
 					curPlayer->SetAttribute(PLAYER_SKINCOLOR, StringHexToChar(cell));
 				default:
 					break;
