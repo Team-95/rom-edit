@@ -7,6 +7,7 @@
 #include "Helpers.h"
 #include "ConstantsPlayer.h"
 #include "ConstantsTeam.h"
+#include "Constants.h"
 
 using namespace std;
 
@@ -15,31 +16,28 @@ int main()
 	FILE *tempRead;
 	FILE* romRead;
 	FILE* romWrite;
-	int movingEmptyOffset = EMPTY_OFFSET;
-	Team teams[27];
 
-	tempRead = fopen("D:\\OwnCloud\\Team95\\NBA Live 95 (USA, Europe).md", "rb");
-	romWrite = fopen("D:\\OwnCloud\\Team95\\rom-edit.md", "wb");
+	tempRead = fopen("D:\\OwnCloud\\Team95\\rom-edit ad.md", "rb");
+	romWrite = fopen("D:\\OwnCloud\\Team95\\rom-edit ad with players.md", "wb");
+	romRead = fopen("D:\\OwnCloud\\Team95\\rom-edit ad with players.md", "rb");
 
-	if (!tempRead || !romWrite)
+	ifstream playerStats("D:\\Projects\\2014-15 Player and Team Stats\\2014-15.csv");
+	ifstream teamStats("D:\\Projects\\2014-15 Player and Team Stats\\TeamStats.csv");
+
+	if (!tempRead || !romWrite || !romRead || !playerStats || !teamStats)
 	{
 		cout << "File could not be opened" << endl;
 		return 1;
 	}
-	CopyFile(tempRead, romWrite);
 
+	CopyFile(tempRead, romWrite);
 	fclose(tempRead);
 
-	romRead = fopen("D:\\OwnCloud\\Team95\\rom-edit.md", "rb");
-
-	ifstream playerStats("D:\\Projects\\2014-15 Player and Team Stats\\2014-15.csv");
-	ifstream teamStats("D:\\Projects\\2014-15 Player and Team Stats\\TeamStats.csv");
 	string line;
 
 	string curTeamAb = "";
 	Team* curTeam;
 	int playerIndex = 0;
-	unsigned int emptyOffset = EMPTY_OFFSET;
 
 	while (getline(playerStats, line))
 	{
@@ -271,22 +269,13 @@ int main()
 	}
 
 	// Disable checksum
-	unsigned char checksumOverride[4];
-	checksumOverride[0] = 0x71;
-	checksumOverride[1] = 0x4E;
-	checksumOverride[2] = 0x71;
-	checksumOverride[3] = 0x4E;
-	WriteRom(romWrite, 0x00000691, checksumOverride, 4);
+	WriteRom(romWrite, CHECKSUM_OVERRIDE_ADDRESS, CHECKSUM_OVERRIDE, 4);
 
 	//Remove Jerseys
-	unsigned char jerseyOverride[4];
-	jerseyOverride[0] = 0x42;
-	jerseyOverride[1] = 0x40;
-	jerseyOverride[2] = 0x4E;
-	jerseyOverride[3] = 0x71;
-	WriteRom(romWrite, 0x00008E4C, jerseyOverride, 4);
+	WriteRom(romWrite, JERSEY_ENABLE_ADDRESS, JERSEY_ENABLE, 4);
 
 	fclose(romRead);
 	fclose(romWrite);
 	playerStats.close();
+	teamStats.close();
 }

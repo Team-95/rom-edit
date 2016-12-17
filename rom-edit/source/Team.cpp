@@ -15,9 +15,9 @@ Team::Team(FILE* romR, FILE* romW, unsigned int teamAddress, unsigned int menuAd
 	defense = BytesToChar(ReadRom(romRead, tOffset + TEAM_DEFENSE));
 	overall = BytesToChar(ReadRom(romRead, tOffset + TEAM_OVERALL));
 
-	tsColor1 = BytesToChar(ReadRom(romRead, tOffset + TEAM_TS_COLOR1));
-	tsColor2 = BytesToChar(ReadRom(romRead, tOffset + TEAM_TS_COLOR2));
-	tsColor3 = BytesToChar(ReadRom(romRead, tOffset + TEAM_TS_COLOR3));
+	tsBackgroundColor = BytesToChar(ReadRom(romRead, tOffset + TEAM_TS_BACKGROUND_COLOR));
+	tsBannerColor = BytesToChar(ReadRom(romRead, tOffset + TEAM_TS_BANNER_COLOR));
+	tsTextColor = BytesToChar(ReadRom(romRead, tOffset + TEAM_TS_TEXT_COLOR));
 }
 
 //Team::Team(FILE* romR, FILE* romW, unsigned int &teamAddress, unsigned int menuAddress){}
@@ -38,12 +38,12 @@ unsigned short Team::GetAttribute(unsigned int attribute)
 		return defense;
 	case TEAM_OVERALL:
 		return overall;
-	case TEAM_TS_COLOR1:
-		return tsColor1;
-	case TEAM_TS_COLOR2:
-		return tsColor2;
-	case TEAM_TS_COLOR3:
-		return tsColor3;
+	case TEAM_TS_BACKGROUND_COLOR:
+		return tsBackgroundColor;
+	case TEAM_TS_BANNER_COLOR:
+		return tsBannerColor;
+	case TEAM_TS_TEXT_COLOR:
+		return tsTextColor;
 	}
 	return 0;
 }
@@ -66,14 +66,14 @@ void Team::SetAttribute(unsigned int attribute, unsigned char value)
 	case TEAM_OVERALL:
 		overall = value;
 		break;
-	case TEAM_TS_COLOR1:
-		tsColor1 = value;
+	case TEAM_TS_BACKGROUND_COLOR:
+		tsBackgroundColor = value;
 		break;
-	case TEAM_TS_COLOR2:
-		tsColor2 = value;
+	case TEAM_TS_BANNER_COLOR:
+		tsBannerColor = value;
 		break;
-	case TEAM_TS_COLOR3:
-		tsColor3 = value;
+	case TEAM_TS_TEXT_COLOR:
+		tsTextColor = value;
 		break;
 	}
 	WriteRom(romWrite, tOffset + attribute, &value);

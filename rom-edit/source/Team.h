@@ -40,9 +40,9 @@ private:
 	unsigned char defense;
 	unsigned char overall;
 
-	unsigned char tsColor1;
-	unsigned char tsColor2;
-	unsigned char tsColor3;
+	unsigned char tsBackgroundColor;
+	unsigned char tsBannerColor;
+	unsigned char tsTextColor;
 
 	unsigned char * courtName;
 	unsigned char * location;

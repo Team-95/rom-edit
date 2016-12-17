@@ -1,5 +1,3 @@
-#define EMPTY_OFFSET 0x00200000
-
 #define PLAYER_SIZE 93
 
 #define PLAYER_NUMBER  0x0000
@@ -49,5 +47,6 @@
 #define PLAYER_R_JUMPING  0x038
 #define PLAYER_R_DRIBLING  0x0039
 #define PLAYER_R_STRENGTH  0x003A
-// PLAYER Offsets 0x003B through 0x44 are unknown, probably for saving stats
 #define PLAYER_NAME  0x0045
+
+// PLAYER Offsets 0x003B through 0x44 are unknown, probably for saving stats
