@@ -11,18 +11,46 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char *argv[])
 {
 	FILE *tempRead;
 	FILE* romRead;
 	FILE* romWrite;
 
-	tempRead = fopen("D:\\OwnCloud\\Team95\\rom-edit ad.md", "rb");
-	romWrite = fopen("D:\\OwnCloud\\Team95\\rom-edit ad with players.md", "wb");
-	romRead = fopen("D:\\OwnCloud\\Team95\\rom-edit ad with players.md", "rb");
 
-	ifstream playerStats("D:\\Projects\\2014-15 Player and Team Stats\\2014-15.csv");
-	ifstream teamStats("D:\\Projects\\2014-15 Player and Team Stats\\TeamStats.csv");
+	if (argc < 2)
+	{
+		cout << "Please specify input ROM location" << endl;
+		return 1;
+	}
+	else if (argc < 3)
+	{
+		cout << "Please specify player stat sheet" << endl;
+		return 1;
+	}
+	else if (argc < 4)
+	{
+		cout << "Please specify team stat sheet" << endl;
+		return 1;
+	}
+
+
+	tempRead = fopen(argv[1], "rb");
+
+
+	if (argc > 4)
+	{
+		romWrite = fopen(argv[4], "wb");
+		romRead = fopen(argv[4], "rb");
+	}
+	else
+	{
+		romWrite = fopen("NBA Live 95 Edited.bin", "wb");
+		romRead = fopen("NBA Live 95 Edited.bin", "rb");
+	}
+
+	ifstream playerStats(argv[2]);
+	ifstream teamStats(argv[3]);
 
 	if (!tempRead || !romWrite || !romRead || !playerStats || !teamStats)
 	{

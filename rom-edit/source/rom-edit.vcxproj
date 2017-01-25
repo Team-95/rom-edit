@@ -77,6 +77,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Constants.h" />
     <ClInclude Include="ConstantsPlayer.h" />
     <ClInclude Include="ConstantsTeam.h" />
     <ClInclude Include="Helpers.h" />
